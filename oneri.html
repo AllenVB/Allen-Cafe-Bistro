@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Öneri & İstek Kutusu - Allen Cafe&Bistro</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .oneri-section {
+      max-width: 420px;
+      margin: 3rem auto 2rem auto;
+      background: #fff8f0;
+      border-radius: 14px;
+      box-shadow: 0 4px 24px rgba(160,82,45,0.10);
+      padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+      text-align: center;
+    }
+    .oneri-section h2 {
+      color: #a0522d;
+      margin-bottom: 1.2rem;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+    }
+    .oneri-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      margin-top: 1.2rem;
+    }
+    .oneri-form input, .oneri-form textarea {
+      padding: 0.8rem;
+      border: 1px solid #b388ff;
+      border-radius: 6px;
+      font-size: 1rem;
+      resize: none;
+      background: #f5f6ff;
+    }
+    .oneri-form textarea {
+      min-height: 90px;
+    }
+    .oneri-form button {
+      background: #a0522d;
+      color: #fff;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-weight: 600;
+    }
+    .oneri-form button:hover {
+      background: #ff9800;
+    }
+    .oneri-info {
+      color: #4e342e;
+      font-size: 0.98em;
+      margin-top: 0.7em;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Allen Cafe&Bistro</div>
+      <ul class="nav-links">
+        <li><a href="index.html#home">Ana Sayfa</a></li>
+        <li><a href="menu.html">Menü</a></li>
+        <li><a href="index.html#about">Hakkımızda</a></li>
+        <li><a href="index.html#contact">İletişim</a></li>
+        <li><a href="oneri.html" class="active">Öneri & İstek Kutusu</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="oneri-section">
+      <h2>Öneri & İstek Kutusu</h2>
+      <p>Lütfen kafe ile ilgili öneri, istek veya taleplerinizi bizimle paylaşın.</p>
+      <form class="oneri-form" id="oneriForm">
+        <input type="text" id="oneri-ad" placeholder="Adınız" required />
+        <input type="email" id="oneri-email" placeholder="E-posta (isteğe bağlı)" />
+        <textarea id="oneri-mesaj" placeholder="Mesajınız" required></textarea>
+        <button type="submit">Gönder</button>
+      </form>
+      <div class="oneri-info">Tüm mesajlarınız gizli tutulur ve sadece işletme yönetimi tarafından görülür.</div>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-content">
+      <p>© 2024 Allen Cafe&Bistro</p>
+      <p>
+        <a href="#">Instagram</a> |
+        <a href="#">Facebook</a>
+      </p>
+      <p>Açılış: 08:00 - Kapanış: 23:00</p>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('oneriForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Öneriniz başarıyla gönderildi! Teşekkürler.');
+      this.reset();
+    });
+  </script>
+</body>
+</html> 
