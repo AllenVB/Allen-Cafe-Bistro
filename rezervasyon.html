@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezervasyon | Allen Cafe&Bistro</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e9ded6 0%, #c7b299 100%);
+            min-height: 100vh;
+            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+            color: #5d4632;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .navbar {
+            background: rgba(245, 233, 220, 0.98);
+            box-shadow: 0 6px 24px rgba(176,138,90,0.10);
+            border-bottom: 1.5px solid #b08a5a;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .navbar-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.1rem 2rem 1.1rem 2rem;
+            width: 100%;
+            position: relative;
+        }
+        .logo {
+            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+            font-size: 2.1rem;
+            font-weight: 700;
+            color: #7c5a36;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 16px #b08a5a, 0 1px 0 #fff3;
+            margin-left: 0;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2.2rem;
+            margin-right: 0;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        .nav-links a {
+            color: #a67c52;
+            font-weight: 500;
+            font-size: 1.08rem;
+            text-decoration: none;
+            transition: color 0.18s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #b08a5a 60%, #a67c52 100%);
+            transition: width 0.3s;
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #7c5a36;
+        }
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            z-index: 110;
+            margin-left: auto;
+        }
+        .hamburger span {
+            height: 4px;
+            width: 100%;
+            background: #a67c52;
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .reservation-container {
+            background: rgba(245, 233, 220, 0.98);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px 0 #b08a5a33, 0 1.5px 0 #a67c52;
+            padding: 2.2rem 2.5rem 2rem 2.5rem;
+            margin: 3rem auto 2rem auto;
+            max-width: 400px;
+            width: 95vw;
+            border: 1.5px solid #b08a5a33;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .reservation-container h2 {
+            color: #7c5a36;
+            margin-bottom: 1.2rem;
+            text-shadow: 0 2px 12px #b08a5a, 0 1px 0 #fff3;
+        }
+        #reservationForm {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+        }
+        #reservationForm input,
+        #reservationForm textarea {
+            font-family: inherit;
+            border-radius: 8px;
+            border: 1.5px solid #b08a5a44;
+            background: rgba(255,255,255,0.18);
+            color: #7c5a36;
+            padding: 0.7em 1em;
+            font-size: 1.05rem;
+            box-shadow: 0 2px 8px #b08a5a22;
+            transition: border 0.18s, box-shadow 0.18s;
+        }
+        #reservationForm input:focus,
+        #reservationForm textarea:focus {
+            outline: none;
+            border: 1.5px solid #a67c52;
+            box-shadow: 0 4px 16px #b08a5a33;
+        }
+        #reservationForm button[type="submit"] {
+            background: linear-gradient(90deg, #a67c52 60%, #7c5a36 100%);
+            color: #fff8e1;
+            font-weight: bold;
+            border: 1.5px solid #a67c52;
+            border-radius: 24px;
+            padding: 0.7em 2em;
+            font-size: 1.08rem;
+            cursor: pointer;
+            transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+            box-shadow: 0 4px 16px #b08a5a22;
+        }
+        #reservationForm button[type="submit"]:hover {
+            background: linear-gradient(90deg, #7c5a36 60%, #a67c52 100%);
+            color: #fff;
+            box-shadow: 0 8px 32px 0 #b08a5a33;
+        }
+        @media (max-width: 600px) {
+            .reservation-container {
+                padding: 1.2rem 0.5rem 1rem 0.5rem;
+                min-width: 0;
+                margin: 1.2rem auto 1rem auto;
+            }
+        }
+        @media (max-width: 700px) {
+            .navbar-container {
+                padding: 1.1rem 0.5rem 1.1rem 0.5rem;
+            }
+            .logo {
+                font-size: 1.3rem;
+            }
+            .hamburger {
+                display: flex;
+                position: absolute;
+                right: 0.5rem;
+                top: 50%;
+                transform: translateY(-50%);
+                margin-left: 0;
+            }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100vw;
+                height: 100vh;
+                width: 70vw;
+                max-width: 320px;
+                background: rgba(245, 233, 220, 0.98);
+                box-shadow: -4px 0 24px #b08a5a33;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2rem;
+                padding: 5.5rem 2rem 2rem 2rem;
+                margin: 0;
+                transition: right 0.3s;
+                z-index: 105;
+            }
+            .nav-links.open {
+                right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">Allen Cafe&Bistro</div>
+            <div class="hamburger" id="hamburgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="menu.html">Menü</a></li>
+                <li><a href="index.html#about">Hakkımızda</a></li>
+                <li><a href="index.html#contact">İletişim</a></li>
+                <li><a href="rezervasyon.html" class="active">Rezervasyon</a></li>
+                <li><a href="oneri.html">Öneri & İstek Kutusu</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="reservation-container">
+        <h2>Rezervasyon Yap</h2>
+        <form id="reservationForm">
+            <input type="text" id="resName" placeholder="Adınız Soyadınız" required />
+            <input type="tel" id="resPhone" placeholder="Telefon Numaranız" required />
+            <input type="number" id="resCount" placeholder="Kişi Sayısı" min="1" max="20" required />
+            <input type="datetime-local" id="resDate" required />
+            <textarea id="resNote" placeholder="Notunuz (isteğe bağlı)"></textarea>
+            <button type="submit">Rezervasyon Gönder</button>
+        </form>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p>© 2024 Allen Cafe&Bistro</p>
+            <p>Sadece rezervasyon ile hizmet verilmektedir.</p>
+            <p>
+                <a href="https://www.instagram.com/suleymanemrearlii/" target="_blank">Instagram</a>
+            </p>
+            <p>Açılış: 08:00 - Kapanış: 23:00</p>
+        </div>
+    </footer>
+    <script>
+    document.getElementById('reservationForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Rezervasyon talebiniz alınmıştır!');
+        this.reset();
+    });
+    // Hamburger Menü
+    const hamburger = document.getElementById('hamburgerMenu');
+    const navLinks = document.getElementById('navLinks');
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', function() {
+            navLinks.classList.toggle('open');
+        });
+        // Menüden bir linke tıklanınca menüyü kapat
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        });
+    }
+    </script>
+</body>
+</html> 
